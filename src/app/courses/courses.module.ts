@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { CoursesRoutingModule } from './courses-routing.module';
-import { CoursesComponent } from './courses/courses.component';
+import {CoursesRoutingModule} from './courses-routing.module';
+import {CoursesComponent} from './courses/courses.component';
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { CoursesComponent } from './courses/courses.component';
   ],
   imports: [
     CommonModule,
-    CoursesRoutingModule
+    CoursesRoutingModule,
+    MatTableModule
   ]
 })
-export class CoursesModule { }
+export class CoursesModule {
+}
