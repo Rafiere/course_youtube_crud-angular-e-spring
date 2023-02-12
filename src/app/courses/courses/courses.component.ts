@@ -12,12 +12,14 @@ import {Observable} from "rxjs";
 export class CoursesComponent implements OnInit {
 
   /* O componente não sabe os dados que serão renderizados. O serviço que fará a obtenção desses dados. */
-  courses: Observable<Course[]>;
+
+  /* O "$" é uma convenção que indica que essa variável é um observable. */
+  courses$: Observable<Course[]>;
   displayedColumns = ['name', 'category']
 
   /* Estamos fazendo a injeção de dependências. */
   constructor(private coursesService: CoursesService) {
-    this.courses = this.coursesService.list()
+    this.courses$ = this.coursesService.list()
   }
 
   ngOnInit(): void {

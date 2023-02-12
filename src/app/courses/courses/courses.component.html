@@ -4,28 +4,45 @@
     My Courses
   </mat-toolbar>
 
-  <!-- O Material Table aceita um "async", para tratar um Observable. O "async" realiza um "subscribe"
-   automaticamente. -->
-  <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+  <!-- Esse pipe "async" se inscreverá no observable. Quando esse componente for destruído, o Angular
+  realizará o "unsubscribe" de forma automática. -->
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Course</th>
-      <td mat-cell *matCellDef="let course"> {{course.name}} </td>
-    </ng-container>
+  <!-- O "loading" fará referência a um template do Angular, que só vai ser renderizado quando essa
+  condição não for verdadeira.-->
+  <div *ngIf="courses$ | async as courses; else loading">
 
-    <!-- Category Column -->
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef>Category</th>
-      <td mat-cell *matCellDef="let course"> {{course.category}} </td>
-    </ng-container>
+    <!-- O Material Table aceita um "async", para tratar um Observable. O "async" realiza um "subscribe"
+ automaticamente. -->
+    <table mat-table [dataSource]="courses$" class="mat-elevation-z8">
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Course</th>
+        <td mat-cell *matCellDef="let course"> {{course.name}} </td>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let course"> {{course.category}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <!-- Esse template terá a identificação "#loading". -->
+  <ng-template #loading>
+    <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+
 </mat-card>
 <
 
