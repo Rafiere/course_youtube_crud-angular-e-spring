@@ -4,6 +4,8 @@
     My Courses
   </mat-toolbar>
 
+  <!-- O Material Table aceita um "async", para tratar um Observable. O "async" realiza um "subscribe"
+   automaticamente. -->
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -25,4 +27,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </mat-card>
+<
 
